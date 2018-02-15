@@ -3,10 +3,19 @@ var passport = require('../config/passportConfig.js');
 var router = express.Router();
 var db = require("../models");
 
+/* Get routes */
 router.get("/signup", function(req, res) {
     res.render("auth/signup");
 });
-
+router.get("/login", function(req,res){
+    res.render("auth/login");
+})
+router.get("/logout", function(req, res) {
+    req.logout();
+    req.flash("success", "Successfully logged out");
+    res.redirect("/");
+});
+/* Post routes */
 router.post("/signup", function(req, res, next) {
     console.log("REQ.BODY IS : ", req.body);
     db.user.findOrCreate({
@@ -42,10 +51,5 @@ router.post("/login", passport.authenticate("local", {
     failureRedirect: "/auth/login",
     failureFlash: "Invalid Credentials"
 }));
-router.get("/logout", function(req, res) {
-    req.logout();
-    req.flash("success", "Successfully logged out");
-    res.redirect("/");
-});
 
 module.exports = router;
