@@ -3,12 +3,9 @@ module.exports = (sequelize, DataTypes) => {
   var emotion = sequelize.define('emotion', {
     userId: DataTypes.INTEGER,
     mood: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
+  emotion.associate = function (models) {
+    models.wallet.belongsTo(models.user);
+  };
   return emotion;
 };
