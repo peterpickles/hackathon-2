@@ -32,6 +32,7 @@ app.use(express.static(path.resolve(__dirname, 'client', 'build')));
 
 /* Controllers */
 app.use('/auth', require('./controllers/auth'));
+app.use("/mood", require('./controllers/mood'))
 
 /*Renders react stuff*/
 app.get('*', function(req, res, next) {
