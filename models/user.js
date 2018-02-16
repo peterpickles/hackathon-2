@@ -1,14 +1,7 @@
 'use strict';
-var bcrypt = require('bcrypt');
-
-module.exports = function(sequelize, DataTypes) {
+module.exports = (sequelize, DataTypes) => {
   var user = sequelize.define('user', {
-    firstname: DataTypes.STRING,
-    lastname: DataTypes.STRING,
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
+    name: DataTypes.STRING,
     email: {
       type: DataTypes.STRING,
       validate: {
@@ -17,7 +10,19 @@ module.exports = function(sequelize, DataTypes) {
         }
       }
     },
-    password: {
+    phone: {
+      type: DataTypes.STRING,
+      validate: {
+        isNumeric: {
+          msg: 'Invalid phone number format'
+        },
+        len: {
+          args: [10,11],
+          msg: 'Invalid phone number format'
+        }
+      }
+    },
+    password:{
       type: DataTypes.STRING,
       validate: {
         len: {
@@ -34,14 +39,12 @@ module.exports = function(sequelize, DataTypes) {
           pendingUser.password = hash;
         }
       }
-    },
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
     }
   });
 
+  user.associate = function (models) {
+    models.user.hasMany(models.emotion);
+  };
   user.prototype.isValidPassword = function(passwordTyped){
     return bcrypt.compareSync(passwordTyped, this.password);
   }
@@ -51,6 +54,5 @@ module.exports = function(sequelize, DataTypes) {
     delete user.password;
     return user;
   }
-
   return user;
 };
