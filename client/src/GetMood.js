@@ -10,9 +10,8 @@ class GetMood extends Component {
         emotions:null
       }
     }
-    handleFormSubmit = (e) =>{
-      e.preventDefault();
-        if(this.state.img !== null){
+    handleFormSubmit = (data) =>{
+        if(data !== null){
           document.getElementsByClassName("Mood")[0].innerHTML = "Loading"; //Set loading wheel here
           axios({ 
             method: 'POST', 
@@ -21,7 +20,7 @@ class GetMood extends Component {
               "Content-Type":"application/octet-stream",
               "Ocp-Apim-Subscription-Key": process.env.REACT_APP_API_KEY
             }, 
-            data: this.state.img ,
+            data: data ,
             processData: false
           }).then((response)=>{
             let emotionsArr = [];
@@ -59,9 +58,10 @@ class GetMood extends Component {
       // }
       // console.log(reader.readAsDataURL(file));
       /*Stuff*/
-      this.setState({
-        img:e.target.files[0]
-      })
+      // this.setState({
+      //   img:e.target.files[0]
+      // })
+      this.handleFormSubmit(e.target.files[0]);
     }
     
     makeblob = function (dataURL) {
@@ -87,7 +87,7 @@ class GetMood extends Component {
             }
     render() {
       return (
-        <form onSubmit={this.handleFormSubmit} method="POST" className="Mood">
+        <form method="POST" className="Mood">
 
             {/* <h1>The Moodies App</h1> */}
             <div id="logo-div">
