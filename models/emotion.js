@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     mood: DataTypes.STRING
   });
   emotion.associate = function (models) {
-    models.wallet.belongsTo(models.user);
+    models.emotion.belongsTo(models.user);
   };
   return emotion;
 };
