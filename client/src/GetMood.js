@@ -14,19 +14,20 @@ class GetMood extends Component {
       e.preventDefault();
         if(this.state.img !== null){
           document.getElementsByClassName("Mood")[0].innerHTML = "Loading"; //Set loading wheel here
-        axios({ 
-          method: 'POST', 
-          url: 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=emotion', 
-          headers: {
-            "Content-Type":"application/octet-stream",
-            "Ocp-Apim-Subscription-Key": process.env.REACT_APP_API_KEY
-          }, 
-          data: this.state.img ,
-          processData: false
+          axios({ 
+            method: 'POST', 
+            url: 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=emotion', 
+            headers: {
+              "Content-Type":"application/octet-stream",
+              "Ocp-Apim-Subscription-Key": process.env.REACT_APP_API_KEY
+            }, 
+            data: this.state.img ,
+            processData: false
 
-        }).then((response)=>{
-          this.props.setEmotion(response.data[0].faceAttributes.emotion)
-        })
+          }).then((response)=>{
+            window.location.href = "/colorwheel";
+            this.props.setEmotion(response.data[0].faceAttributes.emotion);
+          })
       }
     }
     handleImgChange = (e) =>{
