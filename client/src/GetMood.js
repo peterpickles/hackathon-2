@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
 dotenv.config();
 class GetMood extends Component {
     constructor(props){
@@ -23,10 +23,21 @@ class GetMood extends Component {
             }, 
             data: this.state.img ,
             processData: false
-
           }).then((response)=>{
+            let emotionsArr = [];
+            let emotions = response.data[0].faceAttributes.emotion;
+            for(let key in emotions){
+              if(emotions[key] > 0){
+                emotionsArr.push({
+                  mood:key,
+                  value:emotions[key]
+                })
+              }
+            }
+            this.props.setEmotion(emotionsArr);
+            console.log(emotionsArr);
+            localStorage.setItem('hackathon-emotions', JSON.stringify(emotionsArr));
             window.location.href = "/colorwheel";
-            this.props.setEmotion(response.data[0].faceAttributes.emotion);
           })
       }
     }
