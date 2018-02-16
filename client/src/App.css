@@ -1,5 +1,5 @@
 html,body,#root,.App,.App div,.space,.recharts-wrapper,.recharts-surface{
-    height:100% !important;
+    height:100%;
     width:100%;
 }
 .App{
