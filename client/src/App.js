@@ -1,18 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+/* Auth */
+import Signup from './auth/Signup.js';
+import Login from './auth/Login.js';
+/*Pages*/
+import Home from './Home.js';
+import GetMood from  './GetMood.js';
 import './App.css';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      user: {}
+    }
+  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Router>
+          <div>
+             <div className="space">
+                <Route exact path="/" component={() => (<Home user={this.state.user} />)} />
+                <Route exact path="/getmood" component={() => (<GetMood user={this.state.user} />)} />
+              </div>
+            </div>
+          </Router>
       </div>
     );
   }

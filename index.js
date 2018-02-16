@@ -33,11 +33,6 @@ app.use(express.static(path.resolve(__dirname, 'client', 'build')));
 /* Controllers */
 app.use('/auth', require('./controllers/auth'));
 
-app.get('/profile', isLoggedIn, function(req, res){
-  //res.render('profile');
-  res.send("profile route");
-});
-
 /*Renders react stuff*/
 app.get('*', function(req, res, next) {
 	res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
