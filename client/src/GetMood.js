@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import dotenv from 'dotenv'
-require('dotenv').config()
 dotenv.config();
 class GetMood extends Component {
     constructor(props){
       super(props);
       this.state = {
-        img:"https://media.licdn.com/media/AAEAAQAAAAAAAAnAAAAAJDJmYzUwNTU2LTc3YjQtNDNjNC1iMDM3LTBhYjQwMmQ0YWQ0Ng.jpg",
+        img:null,
         txt:""
       }
     }
@@ -18,7 +17,7 @@ class GetMood extends Component {
         url: 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=emotion', 
         headers: {
           "Content-Type":"application/json",
-          "Ocp-Apim-Subscription-Key":process.env.REACT_APP_API_KEY
+          "Ocp-Apim-Subscription-Key":"0e637b6fb8944f5fac5bbae74dc69705"
         }, 
         data: { url: this.state.img } 
       }).then((response)=>{
@@ -31,10 +30,20 @@ class GetMood extends Component {
       })
     }
     handleImgChange = (e) =>{
-      let img = e.target.files[0];
+      // let img = window.URL.createObjectURL(e.target.files[0]);
       // this.setState({
       //   img:img
       // })
+      // console.log(img);
+      let file = e.target.files[0];
+      var reader = new FileReader();
+      reader.onloadend = () =>{
+        this.setState({
+          img:encodeURIComponent(reader.result)
+        })
+        console.log(reader.result);
+      }
+      console.log(reader.readAsDataURL(file));
     }
     render() {
       return (
