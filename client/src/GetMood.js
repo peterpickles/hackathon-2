@@ -88,14 +88,20 @@ class GetMood extends Component {
     render() {
       return (
         <form onSubmit={this.handleFormSubmit} method="POST" className="Mood">
-            <h1>The Moodies App</h1>
-            <img src="https://d1o50x50snmhul.cloudfront.net/wp-content/uploads/2017/02/15180000/gettyimages-158781036-800x533.jpg" alt="Moodie Logo" className="mood-logo"/>
-            <h2>Take a Picture</h2>
-            <input onChange={this.handleImgChange} className="mood-img-input" name="img" type="file" accept="image/*" capture="camera" />
-            <input type="submit" className="mood-submit"/>
+
+            {/* <h1>The Moodies App</h1> */}
+            <div id="logo-div">
+              <img src="http://res.cloudinary.com/dwvxvfxhf/image/upload/v1518814494/MoodiesLogo_axsowf.png" alt="Moodie Logo" className="mood-logo"/>
+            </div>
+            <div id="submit">
+              <input  onChange={this.handleImgChange} className="mood-img-input" name="img" type="file" accept="image/*" capture="camera" />
+              <img src="http://res.cloudinary.com/dwvxvfxhf/image/upload/v1518818367/Take_a_picture_fwvf7i.png" alt="submit" className="picture-submit"/>
+            </div>
         </form>
+
       );
     }
   }
+              
   
   export default GetMood;
