@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
 dotenv.config();
 class GetMood extends Component {
     constructor(props){
@@ -14,19 +14,31 @@ class GetMood extends Component {
       e.preventDefault();
         if(this.state.img !== null){
           document.getElementsByClassName("Mood")[0].innerHTML = "Loading"; //Set loading wheel here
-        axios({ 
-          method: 'POST', 
-          url: 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=emotion', 
-          headers: {
-            "Content-Type":"application/octet-stream",
-            "Ocp-Apim-Subscription-Key": process.env.REACT_APP_API_KEY
-          }, 
-          data: this.state.img ,
-          processData: false
-
-        }).then((response)=>{
-          this.props.setEmotion(response.data[0].faceAttributes.emotion)
-        })
+          axios({ 
+            method: 'POST', 
+            url: 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=emotion', 
+            headers: {
+              "Content-Type":"application/octet-stream",
+              "Ocp-Apim-Subscription-Key": process.env.REACT_APP_API_KEY
+            }, 
+            data: this.state.img ,
+            processData: false
+          }).then((response)=>{
+            let emotionsArr = [];
+            let emotions = response.data[0].faceAttributes.emotion;
+            for(let key in emotions){
+              if(emotions[key] > 0){
+                emotionsArr.push({
+                  mood:key,
+                  value:emotions[key]
+                })
+              }
+            }
+            this.props.setEmotion(emotionsArr);
+            console.log(emotionsArr);
+            localStorage.setItem('hackathon-emotions', JSON.stringify(emotionsArr));
+            window.location.href = "/colorwheel";
+          })
       }
     }
     handleImgChange = (e) =>{

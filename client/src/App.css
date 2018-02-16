@@ -1,3 +1,7 @@
+html,body,#root,.App,.App div,.space,.recharts-wrapper,.recharts-surface{
+    height:100% !important;
+    width:100%;
+}
 .App{
 
 }
@@ -43,3 +47,10 @@
     border: 1px solid grey;
 }
 /*mood END*/
+/*colorwheel START*/
+.color-wheel{
+    width:100%;
+    height:100%;
+    overflow: hidden;
+}
+/*colorwheel END*/

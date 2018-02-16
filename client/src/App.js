@@ -6,6 +6,8 @@ import Login from './auth/Login.js';
 /*Pages*/
 import Home from './Home.js';
 import GetMood from  './GetMood.js';
+import ColorWheel from './ColorWheel.js';
+/*Style*/
 import './App.css';
 
 class App extends Component {
@@ -20,7 +22,6 @@ class App extends Component {
     this.setState({
       emotion:data
     })
-    console.log("emotion",this.state.emotion);
   }
   render() {
     return (
@@ -30,6 +31,7 @@ class App extends Component {
              <div className="space">
                 <Route exact path="/" component={() => (<Home user={this.state.user} />)} />
                 <Route exact path="/getmood" component={() => (<GetMood setEmotion={this.setEmotion} user={this.state.user} />)} />
+                <Route exact path="/colorwheel" component={() => (<ColorWheel emotion={this.state.emotion} user={this.state.user} />)} />
               </div>
             </div>
           </Router>
