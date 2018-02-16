@@ -7,29 +7,27 @@ class GetMood extends Component {
       super(props);
       this.state = {
         img:null,
-        txt:""
+        emotions:null
       }
     }
     handleFormSubmit = (e) =>{
       e.preventDefault();
-      axios({ 
-        method: 'POST', 
-        url: 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=emotion', 
-        headers: {
-          "Content-Type":"application/octet-stream",
-          "Ocp-Apim-Subscription-Key": process.env.REACT_APP_API_KEY
-        }, 
-        data: this.state.img ,
-        processData: false
+        if(this.state.img !== null){
+          document.getElementsByClassName("Mood")[0].innerHTML = "Loading"; //Set loading wheel here
+        axios({ 
+          method: 'POST', 
+          url: 'https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=emotion', 
+          headers: {
+            "Content-Type":"application/octet-stream",
+            "Ocp-Apim-Subscription-Key": process.env.REACT_APP_API_KEY
+          }, 
+          data: this.state.img ,
+          processData: false
 
-      }).then((response)=>{
-        console.log(response.data[0].faceAttributes.emotion);
-      })
-    }
-    handleTextChange = (e) =>{
-      this.setState({
-        txt:e.target.value
-      })
+        }).then((response)=>{
+          this.props.setEmotion(response.data[0].faceAttributes.emotion)
+        })
+      }
     }
     handleImgChange = (e) =>{
       /*Blob*/
@@ -78,6 +76,7 @@ class GetMood extends Component {
     render() {
       return (
         <form onSubmit={this.handleFormSubmit} method="POST" className="Mood">
+
             {/* <h1>The Moodies App</h1> */}
             <div id="logo-div">
               <img src="http://res.cloudinary.com/dwvxvfxhf/image/upload/v1518814494/MoodiesLogo_axsowf.png" alt="Moodie Logo" className="mood-logo"/>
