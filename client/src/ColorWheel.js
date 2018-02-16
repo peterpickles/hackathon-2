@@ -10,7 +10,9 @@ class ColorWheel extends Component {
         }
     }
 handleChartClick = (e) =>{
-    console.log(e.mood);
+    localStorage.setItem('hackathon-selected-emo', e.name);
+    localStorage.setItem('hackathon-selected-clr', e.fill);
+    window.location.href = "/helpemotion";
 }
 render() {
     const data = JSON.parse(this.state.emotions);
@@ -20,20 +22,19 @@ render() {
         disgust:"#ddaddd",
         fear:"#149517",
         happiness:"#fee661",
-        neutral:"#ffffff",
+        neutral:"#cfd2d6",
         sadness:"#8d8ffc",
         surprise:"#5ebefc"
       }
     console.log(typeof data);
     return (
       <div className="color-wheel">
+        <h1 className="color-wheel-label">Are you feeling...</h1>
         <PieChart width={410} height={410}>
-            <Pie data={data} cx="50%" cy="50%" outerRadius="80%" paddingAngle={2}>
+            <Pie onClick={this.handleChartClick} data={data} cx="45%" cy="45%" outerRadius="80%" paddingAngle={2}>
             {
                 data.map((entry, index) => {
-                    if(COLORS[entry.mood]){
-                        return <Cell fill={COLORS[entry.mood]}/>
-                    }
+                        return <Cell fill={COLORS[entry.name]}/>
                 })
             }
             </Pie>
