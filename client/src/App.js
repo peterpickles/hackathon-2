@@ -12,8 +12,15 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      user: {}
+      user: {},
+      emotion:null
     }
+  }
+  setEmotion = (data) =>{
+    this.setState({
+      emotion:data
+    })
+    console.log("emotion",this.state.emotion);
   }
   render() {
     return (
@@ -22,7 +29,7 @@ class App extends Component {
           <div>
              <div className="space">
                 <Route exact path="/" component={() => (<Home user={this.state.user} />)} />
-                <Route exact path="/getmood" component={() => (<GetMood user={this.state.user} />)} />
+                <Route exact path="/getmood" component={() => (<GetMood setEmotion={this.setEmotion} user={this.state.user} />)} />
               </div>
             </div>
           </Router>
