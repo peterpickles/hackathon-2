@@ -2,9 +2,35 @@
 module.exports = (sequelize, DataTypes) => {
   var user = sequelize.define('user', {
     name: DataTypes.STRING,
-    email: DataTypes.STRING,
-    phone: DataTypes.STRING,
-    password: DataTypes.STRING
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        isEmail: {
+          msg: 'Invalid email address format'
+        }
+      }
+    },
+    phone: {
+      type: DataTypes.STRING,
+      validate: {
+        isNumeric: {
+          msg: 'Invalid phone number format'
+        },
+        len: {
+          args: [10,11],
+          msg: 'Invalid phone number format'
+        }
+      }
+    },
+    password:{
+      type: DataTypes.STRING,
+      validate: {
+        len: {
+          args: [6, 32],
+          msg: 'Password must be between 6 and 32 characters long'
+        }
+      }
+    }
   }, {
     hooks: {
       beforeCreate: function(pendingUser, options){
