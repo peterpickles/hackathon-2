@@ -1,28 +1,22 @@
-.App {
+.App{
+
+}
+/*Mood component START*/
+.Mood{
   text-align: center;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.mood-logo{
+    width:45%;
 }
+.mood-img-input{
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
 }
-
-.App-title {
-  font-size: 1.5em;
+.mood-txt-input{
+    border:1px solid grey;
+    height:20vh;
+    width:90%;
 }
-
-.App-intro {
-  font-size: large;
+.mood-submit{
+    border: 1px solid grey;
 }
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+/*mood END*/
