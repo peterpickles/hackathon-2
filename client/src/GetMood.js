@@ -28,8 +28,8 @@ class GetMood extends Component {
             for(let key in emotions){
               if(emotions[key] > 0){
                 emotionsArr.push({
-                  mood:key,
-                  value:emotions[key]
+                  name:key,
+                  value:parseFloat(emotions[key])
                 })
               }
             }
