@@ -7,6 +7,7 @@ import Login from './auth/Login.js';
 import Home from './Home.js';
 import GetMood from  './GetMood.js';
 import ColorWheel from './ColorWheel.js';
+import SelectEmotion from './SelectEmotion.js';
 /*Style*/
 import './App.css';
 
@@ -32,6 +33,7 @@ class App extends Component {
                 <Route exact path="/" component={() => (<Home user={this.state.user} />)} />
                 <Route exact path="/getmood" component={() => (<GetMood setEmotion={this.setEmotion} user={this.state.user} />)} />
                 <Route exact path="/colorwheel" component={() => (<ColorWheel emotion={this.state.emotion} user={this.state.user} />)} />
+                <Route exact path="/helpemotion" component={() => (<SelectEmotion user={this.state.user} />)} />
               </div>
             </div>
           </Router>
