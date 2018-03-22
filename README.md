@@ -11,7 +11,7 @@ Capture the sentiment of the room through moodies app!  Our app will allow you t
 	 * Axios
 	 * React-router-dom
 	* CSS Framework: React-Bootstrap
-* MongoDB with Mongoose
+* sql data w/postgres ORM
 
 # Approach Taken
 
@@ -29,7 +29,7 @@ Capture the sentiment of the room through moodies app!  Our app will allow you t
 *
 
 
-# How to get your own {FlashDash}?
+# How to get your own moodies app?!
 If you'd like to set this project up on your own local server: 
 * Fork and clone this repository
 * Run `npm install` to install dependencies in both client and main project folder
