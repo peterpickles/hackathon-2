@@ -12,6 +12,7 @@ Capture the sentiment of the room through moodies app!  Our app will allow you t
 	 * React-router-dom
 	* CSS Framework: React-Bootstrap
 * sql data w/postgres ORM
+* Azure facial recognition API
 
 # Approach Taken
 
