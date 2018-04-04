@@ -12,7 +12,7 @@ Capture the sentiment of the room through moodies app!  Our app will allow you t
 	 * React-router-dom
 	* CSS Framework: React-Bootstrap
 * sql data w/postgres ORM
-* Azure facial recognition API
+* Azure facial recognition API 
 
 # Approach Taken
 
@@ -36,7 +36,7 @@ If you'd like to set this project up on your own local server:
 * Run `npm install` to install dependencies in both client and main project folder
   * Create a react build with `npm run build`  in the /client folder
   * Use `nodemon` to run the application
-* Setup your database with Mongodb 
+* Setup your database with Mongodb with terminal commands
 * Create .env file, inside set a "JWT_SECRET=wordOfyourchoice".
 * To have a view of your database, use Mongo Compass or Robo 3T to manage the data in your MongoDb.
 
