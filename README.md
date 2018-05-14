@@ -14,6 +14,7 @@ Capture the sentiment of the room through moodies app!  Our app will allow you t
 * sql data w/postgres ORM
 * Azure facial recognition API 
 
+
 # Approach Taken
 
 
@@ -39,6 +40,7 @@ If you'd like to set this project up on your own local server:
 * Setup your database with Mongodb with terminal commands
 * Create .env file, inside set a "JWT_SECRET=wordOfyourchoice".
 * To have a view of your database, use Mongo Compass or Robo 3T to manage the data in your MongoDb.
+* Some pictures of yourself using different emotions, or you can just use your friend's picture
 
 
 # Backlog for future development
